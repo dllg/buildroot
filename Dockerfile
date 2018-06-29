@@ -19,7 +19,13 @@ RUN apk add --no-cache \
     rsync \
     file \
     bc \
-    wget
+    wget \
+    curl \
+    ca-certificates
+
+COPY certs/*.* /usr/local/share/ca-certificates/
+
+RUN update-ca-certificates
 
 # Set current working directory
 WORKDIR /home
