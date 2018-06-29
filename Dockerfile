@@ -1,4 +1,7 @@
 FROM alpine:3.7
+
+ENV BUILDROOT_VERSION 2018.02.3
+
 RUN apk add --no-cache \
     bash \
     which \
@@ -7,6 +10,7 @@ RUN apk add --no-cache \
     binutils \
     gcc \
     g++ \
+    git \
     bash \
     patch \
     gzip \
@@ -21,11 +25,18 @@ RUN apk add --no-cache \
     bc \
     wget \
     curl \
-    ca-certificates
+    ca-certificates \
+    ncurses-dev
 
 COPY certs/*.* /usr/local/share/ca-certificates/
 
 RUN update-ca-certificates
+
+# Install buildroot
+RUN \
+    git clone git://git.buildroot.net/buildroot && \
+    cd buildroot && \
+    git checkout tags/$BUILDROOT_VERSION
 
 # Set current working directory
 WORKDIR /home
