@@ -1,6 +1,6 @@
-FROM alpine:3.7
+FROM alpine:latest
 
-ENV BUILDROOT_VERSION 2018.02.3
+ENV BUILDROOT_VERSION 2018.05
 
 RUN apk add --no-cache \
     bash \
@@ -26,7 +26,11 @@ RUN apk add --no-cache \
     wget \
     curl \
     ca-certificates \
-    ncurses-dev
+    ncurses-dev \
+    linux-headers \
+    icu-dev \
+    libc-dev \
+    gettext-dev
 
 COPY certs/*.* /usr/local/share/ca-certificates/
 
