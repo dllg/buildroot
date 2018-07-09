@@ -1,36 +1,11 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
 ENV BUILDROOT_VERSION 2018.05
 
-RUN apk add --no-cache \
-    bash \
-    which \
-    sed \
-    make \
-    binutils \
-    gcc \
-    g++ \
-    git \
-    bash \
-    patch \
-    gzip \
-    bzip2 \
-    perl \
-    tar \
-    cpio \
-    python \
-    unzip \
-    rsync \
-    file \
-    bc \
-    wget \
-    curl \
-    ca-certificates \
-    ncurses-dev \
-    linux-headers \
-    icu-dev \
-    libc-dev \
-    gettext-dev
+RUN apt-get update && \
+    apt-get install -y build-essential \
+    git gcc wget curl musl-dev file \
+    perl python rsync bc patch unzip cpio ca-certificates
 
 COPY certs/*.* /usr/local/share/ca-certificates/
 
