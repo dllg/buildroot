@@ -3,7 +3,7 @@
 BUILD_FOLDER=".buildroot/build"
 DEFCONFIG="freescale_imx7dsabresd_defconfig"
 
-if ! -d $BUILD_FOLDER; then
+if ! -e $BUILD_FOLDER; then
     mkdir -p $BUILD_FOLDER
 fi
 
