@@ -1,6 +1,7 @@
 FROM ubuntu:latest
 
 ENV BUILDROOT_VERSION 2018.05
+ENV BUILDROOT_HOME /home/.buildroot
 
 RUN apt-get update && \
     apt-get install -y build-essential \
@@ -17,11 +18,14 @@ RUN \
     cd buildroot && \
     git checkout tags/$BUILDROOT_VERSION
 
+# Create workdir
+RUN mkdir -p $BUILDROOT_HOME
+
+# Copy build-script
+ADD docker/build /usr/local/bin/build
+RUN chmod 755 /usr/local/bin/build
+
 # Set current working directory
-WORKDIR /home
+WORKDIR $BUILDROOT_HOME
 
-# Run the start-script
-ADD docker_entry.sh /usr/local/bin/docker_entry.sh
-RUN chmod 755 /usr/local/bin/docker_entry.sh
-
-ENTRYPOINT ["docker_entry.sh"]
+ENTRYPOINT ["/bin/bash"]
