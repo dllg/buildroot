@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if ["${BUILD_FOLDER}" == ""]; then
-    BUILD_FOLDER=".buildroot/build_rpi"
+    BUILD_FOLDER=".buildroot/build_rpi3_64"
 fi
 
 if ["${DEFCONFIG}" == ""]; then
-    DEFCONFIG="raspberrypi_defconfig"
+    DEFCONFIG="raspberrypi3_64_defconfig"
 fi
 
 echo "BUILD_FOLDER = ${BUILD_FOLDER}"
